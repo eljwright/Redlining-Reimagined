@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Redlining Reimagined</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="icon" type="image/x-icon"
+        href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mapbox-gl-globe-minimap@1.2.0/dist/bundle.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <!-- added bootstrap styling bellow -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<!-- CHANGES (by Laura) -->
+<!-- Created a z-index: -5 in #map on css, issue: zoom needs to reappear  -->
+<!-- Formatted the body into sections: header, main, footer where both script and secondary website sit in -->
+<!-- Deleted <styles> in <head> section and created a new stylesheet, linked html to file style.css -->
+<!-- Styled the sections into the css -->
+<!-- Incorporated second page as an iframe but need to check scroll settings -->
+<!-- Checklist: 1. collapse second nav bar for smaller screens
+                  2. make iframe responsive 
+                  3. See the potential incompatibilities with config.js interactivity -->
+
+<body>
+    <!-- here goes the nav bar -->
+    <!-- Taken from bootstrap, you'll need to fill in the links to the other pages (i.e. the About page, Learn more and the references pages) -->
+    <header class="hidden-sm-and-down">
+        <!-- START -->
+        <!-- 1st nav bar -->
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    Home
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <!-- Put your website here (href) -->
+                            <a class="nav-link" href="about.html" target="_blank">About
+                                <!-- <span class="sr-only">(current)</span> -->
+                            </a>
+                        </li>
+                        <!-- link -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Learn more
+                                <!-- <span class="sr-only">(current)</span> -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- link -->
+                            <a class="nav-link" href="#">References</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- second nav bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark p1-primary nav-color static-top">
+            <div class="container">
+                <ul class="navbar-nav ">
+                    <li class="nav-item active">
+                        <p class="nav-link">Jump to
+                            <span class="sr-only">(current)</span>
+                        </p>
+                    </li>
+                    <!-- mke the Jump to link into something like bellow  -->
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span> 
+                    </button> -->
+                    <li class="nav-item font-weight-lighter">
+                        <a class="nav-link" href="#chapter-six">Community resistance and legislation</a>
+                    </li>
+
+                    <li class="nav-item font-weight-lighter">
+                        <a class="nav-link" href="#chapter-eight">Modern wealth inequality</a>
+                    </li>
+
+                    <li class="nav-item font-weight-lighter">
+                        <a class="nav-link" href="#chapter-nine">Disinvestment</a>
+                    </li>
+                    <li class="nav-item font-weight-lighter">
+                        <a class="nav-link" href="#chapter-ten">Gentrification</a>
+                    </li>
+                    <li class="nav-item font-weight-lighter">
+                        <a class="nav-link" href="#chapter-twelve">Conclusion</a>
+                    </li>
+                    <li class="nav-item font-weight-lighter">
+                        <a class="nav-link" href="#comparative-map">Comparison map</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- END nav bar -->
+    </header>
+
+
+    <main>
+
+        <!-- here goes the rest of the content -->
+        <!-- First a hero section -->
+        <!-- START hero header -->
+        <section class="hero">
+            <div class="text-hero">
+                <h1>Redlining Reimagined</h1>
+                <p>An exploration of the discriminatory housing practice of redlining and its devastating modern
+                    legacies in Seattle, Washington <br>by Elijah Wright</p>
+            </div>
+        </section>
+        <!-- END hero -->
+
+        <!-- Second the mapbox content -->
+        <section>
+            <div id="map"></div>
+            <div id="story"></div>
+            <script src="./config.js"></script>
+        </section>
+
+        <!-- Third the second website -->
+        <!-- !!!!!! This needs to be mde responsive -->
+        <article id="comparative-map" class="comparative-web">
+            <div class="comparative-web-text">
+                <h1>Article Here will go the other website as an iframe probably</h1>
+                <p>Here will go some text explaining the situation bellow, if not needed delete</p>
+            </div>
+            <div class="comparative-web-container">
+                <iframe class="comparative-web-iframe" src="comp-map/comp_map_index.html" frameborder="0"></iframe>
+            </div>
+
+        </article>
+
+        <!-- Fourth the final footer -->
+        <footer>
+            <p>Source: source citations, etc.
+                <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank"> Mapbox
+                    Storytelling</a> template.
+            </p>
+        </footer>
+    </main>
+
+
+
+    <script>
+        var initLoad = true;
+        var layerTypes = {
+            'fill': ['fill-opacity'],
+            'line': ['line-opacity'],
+            'circle': ['circle-opacity', 'circle-stroke-opacity'],
+            'symbol': ['icon-opacity', 'text-opacity'],
+            'raster': ['raster-opacity'],
+            'fill-extrusion': ['fill-extrusion-opacity'],
+            'heatmap': ['heatmap-opacity']
+        }
+
+        var alignments = {
+            'left': 'lefty',
+            'center': 'centered',
+            'right': 'righty',
+            'full': 'fully'
+        }
+
+        function getLayerPaintType(layer) {
+            var layerType = map.getLayer(layer).type;
+            return layerTypes[layerType];
+        }
+
+        function setLayerOpacity(layer) {
+            var paintProps = getLayerPaintType(layer.layer);
+            paintProps.forEach(function (prop) {
+                var options = {};
+                if (layer.duration) {
+                    var transitionProp = prop + "-transition";
+                    options = { "duration": layer.duration };
+                    map.setPaintProperty(layer.layer, transitionProp, options);
+                }
+                map.setPaintProperty(layer.layer, prop, layer.opacity, options);
+            });
+        }
+
+        var story = document.getElementById('story');
+        var features = document.createElement('div');
+        features.setAttribute('id', 'features');
+
+        var header = document.createElement('div');
+
+        if (config.title) {
+            var titleText = document.createElement('h1');
+            titleText.innerText = config.title;
+            header.appendChild(titleText);
+        }
+
+        if (config.subtitle) {
+            var subtitleText = document.createElement('h2');
+            subtitleText.innerText = config.subtitle;
+            header.appendChild(subtitleText);
+        }
+
+        if (config.byline) {
+            var bylineText = document.createElement('p');
+            bylineText.innerText = config.byline;
+            header.appendChild(bylineText);
+        }
+
+        if (header.innerText.length > 0) {
+            header.classList.add(config.theme);
+            header.setAttribute('id', 'header');
+            story.appendChild(header);
+        }
+
+        config.chapters.forEach((record, idx) => {
+            var container = document.createElement('div');
+            var chapter = document.createElement('div');
+
+            if (record.title) {
+                var title = document.createElement('h2');
+                title.innerText = record.title;
+                chapter.appendChild(title);
+            }
+
+            if (record.image) {
+                var image = new Image();
+                image.src = record.image;
+                chapter.appendChild(image);
+            }
+
+            if (record.description) {
+                var story = document.createElement('p');
+                story.innerHTML = record.description;
+                chapter.appendChild(story);
+            }
+
+            container.setAttribute('id', record.id);
+            container.classList.add('step');
+            if (idx === 0) {
+                container.classList.add('active');
+            }
+
+            chapter.classList.add(config.theme);
+            container.appendChild(chapter);
+            container.classList.add(alignments[record.alignment] || 'centered');
+            if (record.hidden) {
+                container.classList.add('hidden');
+            }
+            features.appendChild(container);
+        });
+
+        story.appendChild(features);
+
+        var footer = document.createElement('div');
+
+        if (config.footer) {
+            var footerText = document.createElement('p');
+            footerText.innerHTML = config.footer;
+            footer.appendChild(footerText);
+        }
+
+        if (footer.innerText.length > 0) {
+            footer.classList.add(config.theme);
+            footer.setAttribute('id', 'footer');
+            story.appendChild(footer);
+        }
+
+        mapboxgl.accessToken = config.accessToken;
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: config.style,
+            center: config.chapters[0].location.center,
+            zoom: config.chapters[0].location.zoom,
+            bearing: config.chapters[0].location.bearing,
+            pitch: config.chapters[0].location.pitch,
+            //INTERACTIVITY!!!
+            interactive: true,
+            //Disable cooperative gestures 
+            cooperativeGestures: true,
+            projection: config.projection
+        });
+
+        // Create a inset map if enabled in config.js
+        if (config.inset) {
+            map.addControl(
+                new GlobeMinimap({ ...config.insetOptions }),
+                config.insetPosition
+            );
+        }
+
+        if (config.showMarkers) {
+            var marker = new mapboxgl.Marker({ color: config.markerColor });
+            marker.setLngLat(config.chapters[0].location.center).addTo(map);
+        }
+
+        // instantiate the scrollama
+        var scroller = scrollama();
+
+
+        map.on("load", function () {
+            if (config.use3dTerrain) {
+                map.addSource('mapbox-dem', {
+                    'type': 'raster-dem',
+                    'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+                    'tileSize': 512,
+                    'maxzoom': 14
+                });
+                // add the DEM source as a terrain layer with exaggerated height
+                map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+
+                // add a sky layer that will show when the map is highly pitched
+                map.addLayer({
+                    'id': 'sky',
+                    'type': 'sky',
+                    'paint': {
+                        'sky-type': 'atmosphere',
+                        'sky-atmosphere-sun': [0.0, 0.0],
+                        'sky-atmosphere-sun-intensity': 15
+                    }
+                });
+            };
+
+            // setup the instance, pass callback functions
+            scroller
+                .setup({
+                    step: '.step',
+                    offset: 0.5,
+                    progress: true
+                })
+                .onStepEnter(async response => {
+                    var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
+                    var chapter = config.chapters[current_chapter];
+
+                    response.element.classList.add('active');
+                    map[chapter.mapAnimation || 'flyTo'](chapter.location);
+
+                    if (config.showMarkers) {
+                        marker.setLngLat(chapter.location.center);
+                    }
+                    if (chapter.onChapterEnter.length > 0) {
+                        chapter.onChapterEnter.forEach(setLayerOpacity);
+                    }
+                    if (chapter.callback) {
+                        window[chapter.callback]();
+                    }
+                    if (chapter.rotateAnimation) {
+                        map.once('moveend', () => {
+                            const rotateNumber = map.getBearing();
+                            map.rotateTo(rotateNumber + 180, {
+                                duration: 30000, easing: function (t) {
+                                    return t;
+                                }
+                            });
+                        });
+                    }
+                    if (config.auto) {
+                        var next_chapter = (current_chapter + 1) % config.chapters.length;
+                        map.once('moveend', () => {
+                            document.querySelectorAll('[data-scrollama-index="' + next_chapter.toString() + '"]')[0].scrollIntoView();
+                        });
+                    }
+                })
+                .onStepExit(response => {
+                    var chapter = config.chapters.find(chap => chap.id === response.element.id);
+                    response.element.classList.remove('active');
+                    if (chapter.onChapterExit.length > 0) {
+                        chapter.onChapterExit.forEach(setLayerOpacity);
+                    }
+                });
+
+
+            if (config.auto) {
+                document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
+            }
+        });
+
+
+    </script>
+
+</body>
+
+
+</html>

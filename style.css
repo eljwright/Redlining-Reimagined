@@ -1,0 +1,255 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* CHANGES to anchors (Laura) */
+
+/* Got rid of previous settings */
+/* a,
+        a:hover,
+        a:visited {
+        color: #0071bc;
+        } */
+/* created new anchor settings: */
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* CHANGES to map -- made z-index to include nav bar (Laura) */
+/* Changed top to make sure the navigation of the page is normal */
+#map {
+  top: 30px;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: -5;
+}
+
+/* CHANGES to Nav Bar changes (Laura) */
+/* Created two new nav bars: */
+/* START */
+.fixed-top {
+  box-shadow: 0 3px 14px 0 rgba(44, 35, 110, 0.387), 0 5px 5.5px 0 rgba(0, 0, 0, 0.12);
+}
+.static-top {
+  margin-top: 56px;
+  box-shadow: 0 3px 14px 0 rgba(44, 35, 110, 0.387), 0 5px 5.5px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 0px 0px 6px 6px;
+}
+
+.nav-color{
+  background-color:#8b3d44;
+}
+
+/* To allow secondary nav bar to navigate to sections without first nav bar hiding sections */
+#chapter-six{
+    scroll-margin-top: 70px;
+}
+#chapter-eight{
+    scroll-margin-top: 70px;
+}
+#chapter-nine{
+    scroll-margin-top: 70px;
+}
+#chapter-ten{
+    scroll-margin-top: 70px;
+}
+#chapter-twelve{
+    scroll-margin-top: 70px;
+}
+#comparative-map{
+    scroll-margin-top: 70px;
+}
+
+
+/* END nav bar*/
+
+/* Got rid of preset styles bellow */
+/* 
+#header {
+  margin: auto;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+#header h1,
+#header h2,
+#header p {
+  margin: 0;
+  padding: 2vh 2vw;
+  text-align: center;
+} */
+
+/* Changes to hero section --> before in config.js and was just called header */
+/* deleted config.js header object */
+/* created a new hero element (a large image with text on top of web) */
+/* START hero */
+.hero {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 14px 0 rgba(44, 35, 110, 0.387), 0 5px 5.5px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 0px 0px 6px 6px;
+}
+/* END hero */
+
+/* Changes to the website iframe (Laura) */
+/* START */
+.comparative-web {
+  background-color: rgb(89, 88, 88);
+  border-radius: 8px;
+  margin: 20px;
+  padding: 50px 150px;
+  box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.7), 0 5px 5.5px 0 rgba(0, 0, 0, 0.12);
+}
+.comparative-web-text {
+  padding: 10px;
+}
+.comparative-web h1 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+.comparative-web p {
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+/* .comparative-web-container{
+    
+} */
+.comparative-web-iframe {
+  border-radius: 8px;
+  box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.7), 0 5px 5.5px 0 rgba(0, 0, 0, 0.12);
+  width: 100%;
+  min-height: 700px;
+}
+/* END */
+
+/* Changes to footer (Laura) */
+/* START */
+footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  background-color: #ffffff;
+}
+/* END */
+
+/* main {
+    position: relative;
+    z-index: 50;
+}
+article{
+    position:absolute;
+    bottom: 10px;
+} */
+#footer {
+  width: 100%;
+  min-height: 5vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  text-align: center;
+  line-height: 25px;
+  font-size: 13px;
+  position: absolute;
+  z-index: 50;
+}
+
+#features {
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.centered {
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.lefty {
+  width: 40vw;
+  margin-left: 5vw;
+}
+
+.righty {
+  width: 33vw;
+  margin-left: 62vw;
+}
+
+.fully {
+  width: 100%;
+  margin: auto;
+}
+
+.light {
+  color: #444;
+  background-color: #fafafa;
+}
+
+/* (Laura) Customised some features of the dark theme  */
+.dark {
+  color: #fafafa;
+  /* changed the colour of articles */
+  background-color: #515050;
+  /* added a bit of transparency */
+  opacity: 0.97;
+  /* added a bit of "depth" with shadowing */
+  box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.7), 0 5px 5.5px 0 rgba(0, 0, 0, 0.12);
+  /* rounded the corners of the articles */
+  border-radius: 08px;
+}
+
+.step {
+  padding-bottom: 50vh;
+  /* margin-bottom: 10vh; */
+  opacity: 0.25;
+}
+
+.step.active {
+  opacity: 0.95;
+}
+
+.step div {
+  padding: 25px 50px;
+  line-height: 25px;
+  font-size: 13px;
+}
+
+.small_image {
+  width: 50% !important;
+}
+
+.step img {
+  width: 100%;
+}
+
+@media (max-width: 750px) {
+  .centered,
+  .lefty,
+  .righty,
+  .fully {
+    width: 90vw;
+    margin: 0 auto;
+  }
+}
+/* Change iframe to be responsive (article) */
+/* START responsive */
+
+/* END responsive */
+
+
+
+/* Fix issue on mobile browser where scroll breaks  */
+.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
+.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+  touch-action: unset;
+}

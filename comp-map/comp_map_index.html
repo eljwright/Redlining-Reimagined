@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Seattle Redlining Map with Comparison</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css"
+        type="text/css">
+    <style>
+         html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; 
+        }
+
+        #comparison-container {
+            display: flex;
+            height: 100%;
+            position: relative; 
+            width: 100%;      
+        }
+
+        #before,
+        #after {
+            width: 100%; 
+            flex-grow: 1;
+        }
+
+        #sidebar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 30px;
+            width: 150px;
+            height: auto;
+        }
+        .map-overlay {
+            position: absolute;
+            margin-left: 200px;
+            font-family: Arial, sans-serif;
+            overflow: auto;
+            border-radius: 3px;
+        }
+
+        #features {
+            top: 0;
+            height: 100px;
+            margin-top: 20px;
+            width: 250px;
+        }
+
+        #legend {
+            padding: 10px;
+            box-shadow: 0 1px 2px rgba(0 0 0 0.1);
+            line-height: 18px;
+            height: 150px;
+            margin-bottom: 40px;
+            width: 100px;
+        }
+
+        .legend-key {
+            display: inline-block;
+            border-radius: 20%;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+        }
+
+        button {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* Styles for the maps within the comparison container */
+        .map { 
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .mapboxgl-compare {
+            left: 0px;
+        }
+
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #2980B9;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }  
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {background-color: #ddd;}
+
+        .show {display: block;} 
+    </style>
+</head>
+
+<body>
+    <div id="comparison-container">
+        <div id="before" class="map"></div>
+            <div class="map-overlay" id=""features">
+            <h2>1936 HOLC Redlining Map</h2>
+            <div id="pd"><p>Click on a zone</p></div>
+        </div>
+        <div class="map-overlay" id="legend"></div>
+        <div id="after" class="map"></div>
+         <div id="sidebar">
+            <button id="reset-view">Reset</button>
+            <button id="toggle-neighborhood-boundaries">Toggle Neighborhood Boundaries</button>
+            <div class="dropdown">
+                <button class="dropbtn" id="fly-to">Fly to Neighborhood</button>
+                <div class="dropdown-content" id="fly-dropdown">
+                <button id="fly-to-west-seattle">West Seattle</button>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <script>
+
+        const initial_center = [-122.341919, 47.598645];
+        const initial_zoom = 10.75;
+        // const bounds = [
+        //     [-123.371258, 47.009962], //SW Coords
+        //     [-121.616192, 48.046616] // NE Coords
+        // ];
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZWxqd3JpZ2h0IiwiYSI6ImNtNDduZnlweTA3dm4ybXNjY3R5anAyOGsifQ.gS6yn_JP5mcEIyF9wbgspw';
+
+        // Historic HOLC Map
+        const beforeMap = new mapboxgl.Map({
+            container: 'before',
+            style: 'mapbox://styles/mapbox/light-v11',
+            center: initial_center,
+            zoom: initial_zoom,
+            projection: 'globe',
+            // maxBounds: bounds
+        });
+
+        //Adding sources to beforeMap
+        beforeMap.on('load', () => {
+            beforeMap.addSource('merged_seattle_redlining', {
+                type: 'geojson',
+                data: 'data/merged_seattle_redlining.geojson',
+                promoteId: 'area_id'
+            });
+
+            beforeMap.addSource('seattle_neighborhoods_Lhood', {
+                type: 'geojson',
+                data: 'data/seattle_neighborhoods_Lhood.geojson'
+            });
+
+            beforeMap.addSource('RSE_Index', {
+                type: 'geojson',
+                data: 'data/RSE_Index.geojson'
+            });
+
+            //Adding layers to beforeMap
+
+            //Neighborhood boundaries (prob take out later)
+            beforeMap.addLayer({
+                id: 'seattle_neighborhoods_Lhood',
+                type: 'line',
+                source: 'seattle_neighborhoods_Lhood',
+                paint: {'line-color': 'black'},
+                //neighborhood boundaries set to none for now
+                layout: {visibility: 'none'}
+            });
+
+            //Redlining layer with colors based on grades
+            beforeMap.addLayer({
+                id: 'redlining_seattle_fill',
+                type: 'fill',
+                source: 'merged_seattle_redlining',
+                layout: {},
+                paint: {
+                    'fill-color': [
+                        'match',
+                        ['get', 'grade'],
+                        'A', '#31af66',
+                        'B', '#3b4cbf',
+                        'C', '#c6ce55',
+                        'D', '#d14d4d',
+                        'grey'
+                    ],
+                    'fill-opacity': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        0.9,
+                        0.65
+                    ]
+                },
+            });
+
+            //Add redlining line layer
+            beforeMap.addLayer({
+                id: 'redlining_seattle_line',
+                type: 'line',
+                source: 'merged_seattle_redlining',
+                paint: {
+                    'line-color': [
+                        'match',
+                        ['get', 'grade'],
+                        'A', '#31af66',
+                        'B', '#3b4cbf',
+                        'C', '#c6ce55',
+                        'D', '#d14d4d',
+                        'grey'
+                    ],
+                    'line-width': 1
+                },
+                layout: { visibility: 'visible' }
+            });
+            
+            //RSE Index so the popups can display data from the layer
+            //At 0 opacity so it doesnt actually show the layer on map
+            beforeMap.addLayer({
+                id: 'RSE_Index',
+                type: 'fill',
+                source: 'RSE_Index',
+                paint: {
+                    'fill-color': '#000000',
+                    'fill-opacity': 0 
+                }
+            });
+
+        });
+
+        //Hover mouse section for before map
+        let hoveredPolygonId = null
+
+        beforeMap.on('mousemove', 'redlining_seattle_fill', (e) => {
+            if (e.features.length > 0) {
+                if (hoveredPolygonId !== null) {
+                    beforeMap.setFeatureState(
+                        { source: 'merged_seattle_redlining', id: hoveredPolygonId },
+                        { hover: false }
+                    );
+                }
+                hoveredPolygonId = e.features[0].id;
+                beforeMap.setFeatureState(
+                    { source: 'merged_seattle_redlining', id: hoveredPolygonId },
+                    { hover: true }
+                );
+            }
+        });
+        beforeMap.on('mouseleave', 'redlining_seattle_fill', () => {
+            if (hoveredPolygonId !== null) {
+                beforeMap.setFeatureState(
+                    { source: 'merged_seattle_redlining', id: hoveredPolygonId },
+                    { hover: false }
+                );
+            }
+            hoveredPolygonId = null;
+        });
+
+        //Cursor changes on hover
+        beforeMap.on('mouseenter', 'redlining_seattle_fill', () => {
+            beforeMap.getCanvas().style.cursor = 'pointer';
+        });
+
+        beforeMap.on('mouseleave', 'redlining_seattle_fill', () => {
+            beforeMap.getCanvas().style.cursor = '';
+        });
+
+        //POPUPS FOR REDLINING MAP
+        beforeMap.on('click', (e) => {
+            const [ selectedZone ] = beforeMap.queryRenderedFeatures(e.point, {
+                layers: ['redlining_seattle_fill']
+            });
+
+            if (selectedZone) {
+                const { label, grade, description} = selectedZone.properties;
+
+                //RSE Layer
+                const [ selectedRSE ] = beforeMap.queryRenderedFeatures(e.point, {
+                    layers: ['RSE_Index']
+                });
+
+                const compositeQuintile = selectedRSE ? selectedRSE.properties.COMPOSITE_QUINTILE : 'Unknown';
+
+                //HTML REDLINING POPUP CONTENT LAYOUT
+                const popupContent_Redlining = `<h1 style="color:#878e91;">Zone ${label}</h1>
+                <b>Area Description:</b> ${description}<br><br>
+                <b>Modern RSE Inequality Score:</b> ${compositeQuintile}
+                `;
+
+                new mapboxgl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(popupContent_Redlining)
+                    .addTo(beforeMap);
+            }
+        });
+
+
+        // Modern Equity Index Map
+        const afterMap = new mapboxgl.Map({
+            container: 'after',
+            style: 'mapbox://styles/mapbox/dark-v11',
+            center: initial_center,
+            zoom: initial_zoom,
+            projection: 'globe',
+            // maxBounds: bounds
+        });
+
+        //Adding after map sources
+        afterMap.on('load', () => {
+            afterMap.addSource('RSE_Index', {
+                type: 'geojson',
+                data: 'data/RSE_Index.geojson'
+            });
+ 
+            afterMap.addSource('seattle_neighborhoods_Lhood', {
+                type: 'geojson',
+                data: 'data/seattle_neighborhoods_Lhood.geojson'
+            });
+            //Redlining Map to use for popups
+            afterMap.addSource('merged_seattle_redlining', {
+                type: 'geojson',
+                data: 'data/merged_seattle_redlining.geojson',
+            });
+
+            //ADDING AFTER MAP LAYERS
+
+            //Neighborhood boundaries (prob take out later)
+            afterMap.addLayer({
+                id: 'seattle_neighborhoods_Lhood',
+                type: 'line',
+                source: 'seattle_neighborhoods_Lhood',
+                paint: {'line-color': 'black'},
+                //neighborhood boundaries set to none for now
+                layout: {visibility: 'none'}
+            });
+
+            //RSE Index (colors based on grades)
+            afterMap.addLayer({
+                id: 'RSE_Index',
+                type: 'fill',
+                source: 'RSE_Index',
+                layout: {},
+                paint: {
+                    'fill-color': [
+                        'match',
+                        ['get', 'COMPOSITE_QUINTILE'],
+                        'Highest Equity Priority', '#d14d4d',
+                        'Second Highest', '#c6ce55',
+                        'Middle', '#884fba',
+                        'Second Lowest', '#3b4cbf',
+                        'Lowest', '#31af66',
+                        'gray'
+                    ],
+                    'fill-opacity': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        0.9,
+                        0.65
+                    ]},
+            });
+
+            afterMap.addLayer({
+                id: 'RSE_Index',
+                type: 'line',
+                source: 'RSE_Index',
+                paint: {'line-color': 'black'},
+                layout: {visibility: 'visible'}
+            });
+
+            //Redlining layer for popups
+            afterMap.addLayer({
+                id: 'redlining_seattle_fill',
+                type: 'fill',
+                source: 'merged_seattle_redlining',
+                paint: {
+                    'fill-color': '#000000',
+                    'fill-opacity': 0 
+                }
+            });
+
+        });
+
+        //Mouse hover for After Map
+        afterMap.on('mousemove', 'RSE_Index', (e) => {
+            if (e.features.length > 0) {
+                if (hoveredPolygonId !== null) {
+                    afterMap.setFeatureState(
+                        { source: 'RSE_Index', id: hoveredPolygonId },
+                        { hover: false }
+                    );
+                }
+                hoveredPolygonId = e.features[0].id;
+                afterMap.setFeatureState(
+                    { source: 'RSE_Index', id: hoveredPolygonId },
+                    { hover: true }
+                );
+            }
+        });
+        afterMap.on('mouseleave', 'RSE_Index', () => {
+            if (hoveredPolygonId !== null) {
+                afterMap.setFeatureState(
+                    { source: 'RSE_Index', id: hoveredPolygonId },
+                    { hover: false }
+                );
+            }
+            hoveredPolygonId = null;
+        });
+
+        //Changes mouse to pointer on hover
+        afterMap.on('mouseenter', 'RSE_Index', () => {
+            afterMap.getCanvas().style.cursor = 'pointer';
+        });
+
+        afterMap.on('mouseleave', 'RSE_Index', () => {
+            afterMap.getCanvas().style.cursor = '';
+        });
+
+        //POPUPS FOR RSE MAP
+        afterMap.on('click', (e) => {
+            const [ selectedTract ] = afterMap.queryRenderedFeatures(e.point, {
+                layers: ['RSE_Index']
+            });
+
+            if (selectedTract) {
+                const { TRACT, COMPOSITE_QUINTILE, RACE_ELL_ORIGINS_QUINTILE, SOCIOECON_DISADV_QUINTILE, HEALTH_DISADV_QUINTILE} = selectedTract.properties;
+
+                //Redlining Layer
+                const [ selectedRedlining ] = afterMap.queryRenderedFeatures(e.point, {
+                    layers: ['redlining_seattle_fill']
+                });
+
+                const redliningGrade = selectedRedlining ? selectedRedlining.properties.grade : 'Unknown';
+
+                //HTML RSE POPUP CONTENT LAYOUT
+                const popupContent_RSE = `<h1 style="color:#878e91;">Census Tract ${TRACT}</h1>
+                <h2><a href="https://experience.arcgis.com/experience/494bdbb2da4f4574bb330f072bc77073" target="_blank">Modern RSE Data:</a></h2>
+                <h3>Composite Inequality Score: ${COMPOSITE_QUINTILE}</h3>
+                <b>Socioeconomic Disadvantage:</b> ${SOCIOECON_DISADV_QUINTILE}<br>
+                <b>Health Disadvantage:</b> ${HEALTH_DISADV_QUINTILE}<br>
+                <b>Race, ELL, Origins Equity Priority:</b> ${RACE_ELL_ORIGINS_QUINTILE}<br><br>
+                <h2>Historic Redlining Grade: ${redliningGrade}</h2>
+                `;
+
+                new mapboxgl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(popupContent_RSE)
+                    .addTo(afterMap);
+            }
+        });
+
+    
+        // Comp Full Map - COMPARE FUNCTION
+        const map = new mapboxgl.Compare(beforeMap, afterMap, '#comparison-container', {
+            mousemove: false // Enable for mousemove comparison, but it can be a bit much
+        });
+
+    //Geolocater - try to fix so its on the comp map and not have to be on both before and after maps
+    beforeMap.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true
+        })
+    );
+    afterMap.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true
+        })
+    );
+
+
+        // Toggle Neighborhood Boundaries 
+        document.querySelector('#toggle-neighborhood-boundaries').addEventListener('click', () => {
+            const isVisible = beforeMap.getLayoutProperty('seattle_neighborhoods_Lhood', 'visibility') === 'visible';
+
+            beforeMap.setLayoutProperty('seattle_neighborhoods_Lhood', 'visibility', isVisible ? 'none' : 'visible');
+            afterMap.setLayoutProperty('seattle_neighborhoods_Lhood', 'visibility', isVisible ? 'none' : 'visible');
+        });
+
+        // Drop-Down Menu (for flying to neighborhoods)
+        document.querySelector('#fly-to').addEventListener('click', () => {
+            const dropdown = document.getElementById('fly-dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        //Fly to West Seattle
+        document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.38920, 47.57426],
+                zoom: 12
+            })
+        });
+
+    </script>
+</body>
+
+</html>
