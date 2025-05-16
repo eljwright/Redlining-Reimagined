@@ -134,7 +134,7 @@ var config = {
       title: "Federal Context",
       image: "",
       description:
-        "To understand the practice of and impacts of redlining, we must first understand the historical context. In the aftermath of the Great Depression, president Franklin Delano Roosevelt (FDR) started implementing what he called New Deal programs. These programs aimed to create social safety nets and promote economic recovery after the depression. As part of the New Deal, FDR established the Homeowners Loan Corporation (HOLC) and the Federal Housing Administration (FHA) to try and make homeownership more accessible for Americans. Once created the FHA helped standardize the 30 year mortgage and cemented homeownership as a central part of the “American Dream”.",
+        "To understand the practice of and impacts of redlining, we must first understand the historical context. In the aftermath of the Great Depression, president Franklin Delano Roosevelt (FDR) started implementing what he called New Deal programs. These programs aimed to create social safety nets and promote economic recovery after the depression. As part of the New Deal, FDR established the Homeowners Loan Corporation (HOLC) and the Federal Housing Administration (FHA) in an attempt to expand homeownership and make it more accessible for Americans. These programs helped make homeownership a central part of the “American Dream,” but they were implemented in discriminatory ways that excluded many people of color (POC) and low-income communities from accessing those benefits and building wealth through homeownership.",
       location: {
         center: [-122.37414, 47.61064],
         zoom: 11.06,
@@ -213,7 +213,7 @@ var config = {
       title: "Redlining Map Overview",
       image: "",
       description:
-        'Meanwhile the HOLC, worried about taking on risky loans, made color-coded maps to assess the riskiness of granting home loans in different neighborhoods. They created four different categories that they would rank neighborhoods into. <br><br> These grades were: <br> <p style="color:green;">A: Best - Green</p> <p style="color:blue;">B: Still Desirable - Blue</p> <p style="color:yellow;">C: Definitely Declining - Yellow</p> <p style="color:red;">D: Hazardous - Red</p><br>After these maps were created, they were adopted by the FHA as well as private banks to inform their decisions on who to lend to. This meant that families and individuals in the Red and Yellow graded neighborhoods would be systematically denied home loans.',
+        'One way housing discrimination occurred in Seattle was through the Homeowners Loan Corporation (HOLC). The HOLC, saying they were worried about taking on risky loans, made color-coded maps to assess the riskiness of granting home loans in different neighborhoods. These maps were created for every major American city, including Seattle in 1936. The maps included four different residential grades that neighborhoods would be ranked into. <br><br>These grades were as follows:<br><br>After these maps were created, they were adopted by the FHA as well as private banks to inform their decisions on who to lend to. This meant that families and individuals in the Red and Yellow graded neighborhoods would be systematically denied home loans, which is where the term redlining comes from.',
       location: {
         center: [-122.45885, 47.59481],
         zoom: 10.7,
@@ -286,7 +286,7 @@ var config = {
       title: "Racial component of HOLC grades",
       image: "",
       description:
-        "Although the HOLC maps were supposed to be about economic stability and who would be able to pay off their loans in the future, racial demographics were undeniably a major factor in what grade a neighborhood would receive. White neighborhoods were typically classified as “Best”, but if even one Black family lived there, the neighborhood would be determined to be “Definitely Declining” or “Hazardous”. This is especially noticeable when you review the area descriptions that were written to inform the grades.The following Seattle area descriptions will also demonstrate the significant difference in the factors used to categorize neighborhoods.",
+        "Although the HOLC maps were supposed to be about economic stability and who would be able to pay off their loans in the future, racial demographics were undeniably a major factor in what grade a neighborhood would receive. White neighborhoods were typically classified as “Best”, but if even one Black family lived there, the neighborhood would be determined to be “Definitely Declining” or “Hazardous”. <br><br>The claim that people of color would devalue the homes in the area is one that was completely unproven and was used as an unwarranted justification for racist policies. <br><br>The racial factor in HOLC grades becomes especially clear when you look at the area descriptions that informed them. The following sections will examine two different neighborhoods in Seattle, highlighting the stark differences in how white and non-white areas were described.",
       location: {
         center: [-122.45885, 47.59481],
         zoom: 10.7,
