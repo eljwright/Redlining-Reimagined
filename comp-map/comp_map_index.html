@@ -60,6 +60,30 @@
             left: 0px;
         }
 
+        .side-legend {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 10;
+    font-family: sans-serif;
+    max-width: 180px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+
+.left-legend {
+    left: 10px;
+    text-align: left;
+}
+
+.right-legend {
+    right: 10px;
+    text-align: right;
+}
+
+
         .dropbtn {
             background-color: #3498DB;
             color: white;
@@ -103,8 +127,29 @@
 
 <body>
     <div id="comparison-container">
-        <div id="before" class="map"></div>
-        <div id="after" class="map"></div>
+        <div id="before" class="map">
+            <div id="historic-legend" class="side-legend left-legend">
+                <h2>Historic HOLC Grades</h2>
+                    <ul>
+                        <li style="color:#31af66;">A - Best</li>
+                        <li style="color:#3b4cbf;">B - Still Desirable</li>
+                        <li style="color:#c6ce55;">C - Declining</li>
+                        <li style="color:#d14d4d;">D - Hazardous</li>
+                    </ul>
+            </div>
+        </div>
+        <div id="after" class="map">
+            <div id="modern-legend" class="side-legend right-legend">
+                <h2>Modern RSE Index</h2>
+                    <ul>
+                        <li style="color:#d14d4d;">Highest Equity Priority</li>
+                        <li style="color:#c6ce55;">Second Highest</li>
+                        <li style="color:#884fba;">Middle</li>
+                        <li style="color:#3b4cbf;">Second Lowest</li>
+                        <li style="color:#31af66;">Lowest</li>
+                    </ul>
+            </div>
+        </div>
          <div id="sidebar">
             <button id="reset-view">Reset</button>
             <button id="toggle-neighborhood-boundaries">Toggle Neighborhood Boundaries</button>
@@ -119,31 +164,6 @@
         </div>
     </div>
 
-    <div id="map-titles">
-  <div class="map-title" id="before-title">Historic HOLC Redlining Map</div>
-  <div class="map-title" id="after-title">Modern RSE Inequity Map</div>
-</div>
-
-<div id="legends">
-  <!-- Historic HOLC Legend -->
-  <div class="legend" id="legend-before">
-    <h4>HOLC Grades</h4>
-    <div><span style="background:#31af66"></span> Grade A ("Best")</div>
-    <div><span style="background:#3b4cbf"></span> Grade B</div>
-    <div><span style="background:#c6ce55"></span> Grade C</div>
-    <div><span style="background:#d14d4d"></span> Grade D ("Hazardous")</div>
-  </div>
-
-  <!-- RSE Legend -->
-  <div class="legend" id="legend-after">
-    <h4>RSE Inequity Score</h4>
-    <div><span style="background:#d14d4d"></span> Highest Equity Priority</div>
-    <div><span style="background:#c6ce55"></span> Second Highest</div>
-    <div><span style="background:#884fba"></span> Middle</div>
-    <div><span style="background:#3b4cbf"></span> Second Lowest</div>
-    <div><span style="background:#31af66"></span> Lowest</div>
-  </div>
-</div>
 
 
     <script>

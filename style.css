@@ -65,6 +65,18 @@ a {
     scroll-margin-top: 70px;
 }
 
+.mapboxgl-canvas {
+    z-index: 1;
+}
+
+.rselegend-key {
+    display: inline-block;
+    border-radius: 20%;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+}
+
 #map-titles {
     position: absolute;
     top: 10px;
