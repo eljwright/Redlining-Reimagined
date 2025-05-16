@@ -42,37 +42,6 @@
             width: 150px;
             height: auto;
         }
-        .map-overlay {
-            position: absolute;
-            margin-left: 200px;
-            font-family: Arial, sans-serif;
-            overflow: auto;
-            border-radius: 3px;
-        }
-
-        #features {
-            top: 0;
-            height: 100px;
-            margin-top: 20px;
-            width: 250px;
-        }
-
-        #legend {
-            padding: 10px;
-            box-shadow: 0 1px 2px rgba(0 0 0 0.1);
-            line-height: 18px;
-            height: 150px;
-            margin-bottom: 40px;
-            width: 100px;
-        }
-
-        .legend-key {
-            display: inline-block;
-            border-radius: 20%;
-            width: 10px;
-            height: 10px;
-            margin-right: 5px;
-        }
 
         button {
             display: block;
@@ -135,11 +104,6 @@
 <body>
     <div id="comparison-container">
         <div id="before" class="map"></div>
-            <div class="map-overlay" id=""features">
-            <h2>1936 HOLC Redlining Map</h2>
-            <div id="pd"><p>Click on a zone</p></div>
-        </div>
-        <div class="map-overlay" id="legend"></div>
         <div id="after" class="map"></div>
          <div id="sidebar">
             <button id="reset-view">Reset</button>
@@ -154,6 +118,33 @@
               </div>
         </div>
     </div>
+
+    <div id="map-titles">
+  <div class="map-title" id="before-title">Historic HOLC Redlining Map</div>
+  <div class="map-title" id="after-title">Modern RSE Inequity Map</div>
+</div>
+
+<div id="legends">
+  <!-- Historic HOLC Legend -->
+  <div class="legend" id="legend-before">
+    <h4>HOLC Grades</h4>
+    <div><span style="background:#31af66"></span> Grade A ("Best")</div>
+    <div><span style="background:#3b4cbf"></span> Grade B</div>
+    <div><span style="background:#c6ce55"></span> Grade C</div>
+    <div><span style="background:#d14d4d"></span> Grade D ("Hazardous")</div>
+  </div>
+
+  <!-- RSE Legend -->
+  <div class="legend" id="legend-after">
+    <h4>RSE Inequity Score</h4>
+    <div><span style="background:#d14d4d"></span> Highest Equity Priority</div>
+    <div><span style="background:#c6ce55"></span> Second Highest</div>
+    <div><span style="background:#884fba"></span> Middle</div>
+    <div><span style="background:#3b4cbf"></span> Second Lowest</div>
+    <div><span style="background:#31af66"></span> Lowest</div>
+  </div>
+</div>
+
 
     <script>
 

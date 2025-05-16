@@ -28,6 +28,7 @@ a {
   z-index: -5;
 }
 
+
 /* CHANGES to Nav Bar changes (Laura) */
 /* Created two new nav bars: */
 /* START */
@@ -62,6 +63,63 @@ a {
 }
 #comparative-map{
     scroll-margin-top: 70px;
+}
+
+#map-titles {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none; /* prevents blocking map interaction */
+    z-index: 10;
+    padding: 0 50px;
+}
+
+.map-title {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 12px;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#legends {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    z-index: 10;
+}
+
+.legend {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-size: 13px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    max-width: 180px;
+}
+
+.legend h4 {
+    margin: 0 0 5px;
+}
+
+.legend div {
+    margin-bottom: 4px;
+}
+
+.legend span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    vertical-align: middle;
+    border-radius: 2px;
 }
 
 
