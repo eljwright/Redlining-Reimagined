@@ -1,3 +1,11 @@
+.fixed-top {
+  box-shadow: 0 3px 14px 0 rgba(44, 35, 110, 0.387), 0 5px 5.5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.nav-color{
+  background-color:#8b3d44;
+}
+
 .about-page {
   max-width: 900px;
   margin: 40px auto;
