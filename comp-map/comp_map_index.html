@@ -61,27 +61,32 @@
         }
 
         .side-legend {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 15px 20px;
-    border-radius: 10px;
-    z-index: 10;
-    font-family: sans-serif;
-    max-width: 180px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.15);
-}
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 10;
+            font-family: sans-serif;
+            h1 {
+                font-size: 23px;
+            }
+            font-size: 15px;
+            max-width: 200px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.15);
+        }
 
-.left-legend {
-    left: 10px;
-    text-align: left;
-}
 
-.right-legend {
-    right: 10px;
-    text-align: right;
-}
+        .left-legend {
+            left: 10px;
+            text-align: left;
+        }
+
+        .right-legend {
+            right: 10px;
+            text-align: right;
+        }
 
 
         .dropbtn {
@@ -129,24 +134,24 @@
     <div id="comparison-container">
         <div id="before" class="map">
             <div id="historic-legend" class="side-legend left-legend">
-                <h2>Historic HOLC Grades</h2>
+                <h1>1936 HOLC Redlining Grades</h1>
                     <ul>
-                        <li style="color:#31af66;">A - Best</li>
-                        <li style="color:#3b4cbf;">B - Still Desirable</li>
-                        <li style="color:#c6ce55;">C - Declining</li>
-                        <li style="color:#d14d4d;">D - Hazardous</li>
+                        <li style="color:#31af66;"><b>A:</b> "Best"</li>
+                        <li style="color:#3b4cbf;"><b>B:</b> "Still Desirable"</li>
+                        <li style="color:#c6ce55;"><b>C:</b> "Definitely Declining"</li>
+                        <li style="color:#d14d4d;"><b>D:</b> "Hazardous"</li>
                     </ul>
             </div>
         </div>
         <div id="after" class="map">
             <div id="modern-legend" class="side-legend right-legend">
-                <h2>Modern RSE Index</h2>
+                <h1>Modern Racial and Social Equity Index</h1>
                     <ul>
-                        <li style="color:#d14d4d;">Highest Equity Priority</li>
-                        <li style="color:#c6ce55;">Second Highest</li>
-                        <li style="color:#884fba;">Middle</li>
+                        <li style="color:#31af66;">Lowest Equity Priority</li>
                         <li style="color:#3b4cbf;">Second Lowest</li>
-                        <li style="color:#31af66;">Lowest</li>
+                        <li style="color:#884fba;">Middle</li>
+                        <li style="color:#c6ce55;">Second Highest</li>
+                        <li style="color:#d14d4d;">Highest Equity Priority</li>
                     </ul>
             </div>
         </div>
