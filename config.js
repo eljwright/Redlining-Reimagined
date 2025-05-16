@@ -213,7 +213,7 @@ var config = {
       title: "Redlining Map Overview",
       image: "",
       description:
-        'One way housing discrimination occurred in Seattle was through the Homeowners Loan Corporation (HOLC). The HOLC, saying they were worried about taking on risky loans, made color-coded maps to assess the riskiness of granting home loans in different neighborhoods. These maps were created for every major American city, including Seattle in 1936. The maps included four different residential grades that neighborhoods would be ranked into. <br><br>These grades were as follows:<br><br>After these maps were created, they were adopted by the FHA as well as private banks to inform their decisions on who to lend to. This meant that families and individuals in the Red and Yellow graded neighborhoods would be systematically denied home loans, which is where the term redlining comes from.',
+        'One way housing discrimination occurred in Seattle was through the Homeowners Loan Corporation (HOLC). The HOLC, saying they were worried about taking on risky loans, made color-coded maps to assess the riskiness of granting home loans in different neighborhoods. These maps were created for every major American city, including Seattle in 1936. The maps included four different residential grades that neighborhoods would be ranked into. <br><br>These grades were as follows:<br><img src="/images/HOLC_Legend.jpg"><br><br>After these maps were created, they were adopted by the FHA as well as private banks to inform their decisions on who to lend to. This meant that families and individuals in the Red and Yellow graded neighborhoods would be systematically denied home loans, which is where the term redlining comes from.',
       location: {
         center: [-122.45885, 47.59481],
         zoom: 10.7,
@@ -517,6 +517,10 @@ var config = {
       callback: "",
       onChapterEnter: [
         {
+          layer: "Racial_Georef",
+          opacity: 0,
+        },
+        {
           layer: "Redlining_Georef",
           opacity: 1,
         },
@@ -563,11 +567,7 @@ var config = {
         {
           layer: "RSE-lowest",
           opacity: 0,
-        },
-        {
-          layer: "Racial_Georef",
-          opacity: 0,
-        },
+        }
       ],
       onChapterExit: [],
     },
@@ -2023,9 +2023,9 @@ var config = {
       class: "bookmark",
       alignment: "left",
       hidden: false,
-      title: "Conclusion & Comprehensive Map Introduction",
+      title: "Conclusion & Comparison Map Introduction",
       description:
-        "The maps, stories, and data we’ve explored tell a clear story:<br><b>Redlining isn’t just a case of historic discrimination but its legacy continues to shape inequality in Seattle today.</b><br><br>Understanding the connections between historic discriminatory practices and modern day inequality gives us a better understanding of how deeply systemic and persistent these issues are. It also gives us the power to challenge them and push for better solutions going forward.<br><br>Now you have the opportunity to continue exploring the legacy of redlining on your own terms. <b>Use the comprehensive map below </b>to compare the original HOLC zones (left) to the RSE Composite Index (right), to explore connections of redlining to modern day inequality. Use the map to look at your own neighborhood or explore areas you care about, and consider what this history means for the future of our city.",
+        "The maps, stories, and data we’ve explored tell a clear story:<br><b>Redlining isn’t just a case of historic discrimination but its legacy continues to shape inequality in Seattle today.</b><br><br>Understanding the connections between historic discriminatory practices and modern day inequality gives us a better understanding of how deeply systemic and persistent these issues are. It also gives us the power to challenge them and push for better solutions going forward.<br><br>Now you have the opportunity to continue exploring the legacy of redlining on your own terms. <b>Use the comparison map below </b>to compare the original HOLC zones (left) to the RSE Composite Index (right), to explore connections of redlining to modern day inequality. Use the map to look at your own neighborhood or explore areas you care about, and consider what this history means for the future of our city.",
       image: "",
       location: {
         center: [-122.45885, 47.59481],
