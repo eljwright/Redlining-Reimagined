@@ -611,6 +611,14 @@
             })
         });
 
+        //Fly to CD
+        document.querySelector('#fly-to-central-area').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.29843, 47.60990],
+                zoom: 13
+            })
+        });
+
 
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
