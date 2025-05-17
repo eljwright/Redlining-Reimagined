@@ -627,6 +627,13 @@
             })
         });
 
+        //Fly to Downtown
+        document.querySelector('#fly-to-downtown').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.33981, 47.60454],
+                zoom: 13.7
+            })
+        });
 
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
