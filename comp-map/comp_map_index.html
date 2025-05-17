@@ -587,6 +587,14 @@
             })
         });
 
+        //Fly to Beacon Hill
+        document.querySelector('#fly-to-beacon-hill').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.28283, 47.55351],
+                zoom: 12.2
+            })
+        });
+
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
