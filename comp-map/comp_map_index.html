@@ -715,6 +715,14 @@
             })
         });
 
+        //Fly to Seward Park
+        document.querySelector('#fly-to-seward-park').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.26463, 47.55191],
+                zoom: 13.4
+            })
+        });
+
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
