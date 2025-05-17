@@ -691,6 +691,14 @@
             })
         });
 
+        //Fly to Northwest
+        document.querySelector('#fly-to-northwest').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.35235, 47.70873],
+                zoom: 12.8
+            })
+        });
+
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
