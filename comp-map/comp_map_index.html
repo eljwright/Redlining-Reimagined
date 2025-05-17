@@ -572,6 +572,15 @@
         //     afterMap.setLayoutProperty('seattle_neighborhoods_Lhood', 'visibility', isVisible ? 'none' : 'visible');
         // });
 
+        //Reset button
+
+        document.querySelector('#reset-view').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: initial_center,
+                zoom: initial_zoom
+            })
+        })
+
         // Drop-Down Menu (for flying to neighborhoods)
         document.querySelector('#fly-to').addEventListener('click', () => {
             const dropdown = document.getElementById('fly-dropdown');
