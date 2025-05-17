@@ -160,10 +160,27 @@
             <button id="toggle-neighborhood-boundaries">Toggle Neighborhood Boundaries</button>
             <div class="dropdown">
                 <button class="dropbtn" id="fly-to">Fly to Neighborhood</button>
-                <div class="dropdown-content" id="fly-dropdown">
-                <button id="fly-to-west-seattle">West Seattle</button>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                    <div class="dropdown-content" id="fly-dropdown">
+                        <button id="fly-to-ballard">Ballard</button>
+                        <button id="fly-to-beacon-hill">Beacon Hill</button>
+                        <button id="fly-to-capitol-hill">Capitol Hill</button>
+                        <button id="fly-to-cascade">Cascade</button>
+                        <button id="fly-to-central-area">Central Area/District</button>
+                        <button id="fly-to-delridge">Delridge</button>
+                        <button id="fly-to-downtown">Downtown</button>
+                        <button id="fly-to-greater-duwamish">Greater Duwamish</button>
+                        <button id="fly-to-interbay">Interbay</button>
+                        <button id="fly-to-lake-city">Lake City</button>
+                        <button id="fly-to-magnolia">Magnolia</button>
+                        <button id="fly-to-north-central">North Central</button>
+                        <button id="fly-to-northeast">Northeast</button>
+                        <button id="fly-to-northgate">Northgate</button>
+                        <button id="fly-to-northwest">Northwest</button>
+                        <button id="fly-to-queen-anne">Queen Anne</button>
+                        <button id="fly-to-rainier-valley">Rainier Valley</button>
+                        <button id="fly-to-seward-park">Seward Park</button>
+                        <button id="fly-to-university-district">University District</button>
+                        <button id="fly-to-west-seattle">West Seattle</button>
                 </div>
               </div>
         </div>
@@ -549,8 +566,8 @@
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
-                center: [-122.38920, 47.57426],
-                zoom: 12
+                center: [-122.39543, 47.55349],
+                zoom: 12.5
             })
         });
 
