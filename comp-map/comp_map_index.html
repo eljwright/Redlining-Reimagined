@@ -173,7 +173,6 @@
         </div>
          <div id="sidebar">
             <button id="reset-view">Reset</button>
-            <button id="toggle-neighborhood-boundaries">Toggle Neighborhood Boundaries</button>
             <div class="dropdown">
                 <button class="dropbtn" id="fly-to">Fly to Neighborhood</button>
                     <div class="dropdown-content" id="fly-dropdown">
@@ -208,10 +207,10 @@
 
         const initial_center = [-122.341919, 47.598645];
         const initial_zoom = 10.75;
-        // const bounds = [
-        //     [-123.371258, 47.009962], //SW Coords
-        //     [-121.616192, 48.046616] // NE Coords
-        // ];
+        const bounds = [
+            [-122.72032, 47.46243], //SW Coords
+            [-121.91500, 47.72321] // NE Coords
+        ];
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiZWxqd3JpZ2h0IiwiYSI6ImNtNDduZnlweTA3dm4ybXNjY3R5anAyOGsifQ.gS6yn_JP5mcEIyF9wbgspw';
 
@@ -222,7 +221,7 @@
             center: initial_center,
             zoom: initial_zoom,
             projection: 'globe',
-            // maxBounds: bounds
+            maxBounds: bounds
         });
 
         //Adding sources to beforeMap
@@ -388,7 +387,7 @@
             center: initial_center,
             zoom: initial_zoom,
             projection: 'globe',
-            // maxBounds: bounds
+            maxBounds: bounds
         });
 
         //Adding after map sources
@@ -565,13 +564,13 @@
     );
 
 
-        // Toggle Neighborhood Boundaries 
-        document.querySelector('#toggle-neighborhood-boundaries').addEventListener('click', () => {
-            const isVisible = beforeMap.getLayoutProperty('seattle_neighborhoods_Lhood', 'visibility') === 'visible';
+        // // Toggle Neighborhood Boundaries 
+        // document.querySelector('#toggle-neighborhood-boundaries').addEventListener('click', () => {
+        //     const isVisible = beforeMap.getLayoutProperty('seattle_neighborhoods_Lhood', 'visibility') === 'visible';
 
-            beforeMap.setLayoutProperty('seattle_neighborhoods_Lhood', 'visibility', isVisible ? 'none' : 'visible');
-            afterMap.setLayoutProperty('seattle_neighborhoods_Lhood', 'visibility', isVisible ? 'none' : 'visible');
-        });
+        //     beforeMap.setLayoutProperty('seattle_neighborhoods_Lhood', 'visibility', isVisible ? 'none' : 'visible');
+        //     afterMap.setLayoutProperty('seattle_neighborhoods_Lhood', 'visibility', isVisible ? 'none' : 'visible');
+        // });
 
         // Drop-Down Menu (for flying to neighborhoods)
         document.querySelector('#fly-to').addEventListener('click', () => {
