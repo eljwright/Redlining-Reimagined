@@ -579,6 +579,14 @@
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         });
 
+        //Fly to Ballard
+        document.querySelector('#fly-to-ballard').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.38531, 47.67909],
+                zoom: 13.2
+            })
+        });
+
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
