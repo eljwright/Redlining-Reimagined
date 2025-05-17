@@ -635,6 +635,14 @@
             })
         });
 
+        //Fly to Greater Duwamish
+        document.querySelector('#fly-to-greater-duwamish').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.32661, 47.55802],
+                zoom: 12.2
+            })
+        });
+
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
