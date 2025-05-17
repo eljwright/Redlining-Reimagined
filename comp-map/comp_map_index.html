@@ -699,6 +699,14 @@
             })
         });
 
+        //Fly to Queen Anne
+        document.querySelector('#fly-to-queen-anne').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.36087, 47.63899],
+                zoom: 13.4
+            })
+        });
+
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
