@@ -707,6 +707,14 @@
             })
         });
 
+        //Fly to Rainier Valley
+        document.querySelector('#fly-to-rainier-valley').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.28728, 47.54903],
+                zoom: 12.2
+            })
+        });
+
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
