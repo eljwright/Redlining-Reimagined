@@ -643,6 +643,14 @@
             })
         });
 
+        //Fly to Interbay
+        document.querySelector('#fly-to-interbay').addEventListener('click', () => {
+            beforeMap.flyTo({
+                center: [-122.37771, 47.64317],
+                zoom: 13.3
+            })
+        });
+
         //Fly to West Seattle
         document.querySelector('#fly-to-west-seattle').addEventListener('click', () => {
             beforeMap.flyTo({
