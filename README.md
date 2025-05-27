@@ -45,7 +45,7 @@ And finally, thank you to my **family** for all your long-distance support and f
 
 ## Built With
 
-This project was created with the help of the **Mapbox Storytelling template**. This template provides a fantastic foundation for interactive map-based narratives. You can find the original template repository here: [https://github.com/mapbox/storytelling](https://www.mapbox.com/storytelling/)
+This project was created with the help of the **Mapbox Storytelling template**. You can find the original template repository here: [https://github.com/mapbox/storytelling](https://www.mapbox.com/storytelling/)
 
 ---
 
