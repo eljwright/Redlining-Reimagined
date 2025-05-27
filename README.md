@@ -55,10 +55,10 @@ Contributions are welcome! If you find a bug, have a suggestion for improvement,
 
 1.  **Fork** this repository to your own GitHub account.
 2.  **Clone** your forked repository to your local machine.
-3.  **Create a new branch** for your changes (e.g., `git checkout -b feature/add-new-section` or `git checkout -b fix/typo-on-page`).
+3.  **Create a new branch** for your changes.
 4.  **Make your modifications.**
-5.  **Commit** your changes with a clear and descriptive message (`git commit -m "Brief description of changes"`).
-6.  **Push** your changes to your fork on GitHub (`git push origin your-branch-name`).
+5.  **Commit** your changes with a clear and descriptive message.
+6.  **Push** your changes to your fork on GitHub.
 7.  **Open a Pull Request (PR)** from your fork to the `main` branch of this repository. Please describe the purpose of your changes in the PR.
 
 Your contributions help make this project better!
