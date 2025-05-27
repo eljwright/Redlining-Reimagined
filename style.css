@@ -296,7 +296,7 @@ article{
   width: 100%;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 600px) {
   .centered,
   .lefty,
   .righty,
@@ -304,8 +304,9 @@ article{
     width: 90vw;
     margin: 0 auto;
   }
+}
 
-
+@media (max-width: 800px) {
   .comparative-web {
     padding: 20px 20px !important;
   }
@@ -314,6 +315,7 @@ article{
     padding: 0px 0px !important;
   }
 }
+
 
 
 /* Fix issue on mobile browser where scroll breaks  */
