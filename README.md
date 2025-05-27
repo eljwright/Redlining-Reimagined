@@ -20,7 +20,7 @@ You can read my accompanying project commentary [here](https://docs.google.com/d
 
 My name is **Elijah Wright (he/him)**, and I am a final year student in the Digital Cultures program at Newcastle University. I’m originally from Sammamish, Washington, though I am currently living in the UK for university. My academic interests that I have been lucky enough to explore throughout my degree include digital technology, urban planning, public policy, and politics. Outside of academics, I’m a die-hard Seattle sports fan and love traveling.
 
-Feel free to reach out if you'd like to discuss this project, connect, or explore potential opportunities:
+Feel free to reach out if you want to talk about this project, connect, or discuss potential opportunities:
 
 * **Email:** [eljwright04@gmail.com](mailto:eljwright04@gmail.com)
 * **LinkedIn:** [linkedin.com/in/eljwright](https://www.linkedin.com/in/eljwright)
